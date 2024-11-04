@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
+</head>
+<style>
+    body {
+        background-color: #f8f9fa; /* Light background color */
+    }
+    
+    h1 {
+        margin-bottom: 20px; /* Space below the title */
+    }
+    
+    .list-group-item {
+        border: 1px solid #ddd; /* Light border for list items */
+        border-radius: 0.5rem; /* Rounded corners for list items */
+        margin-bottom: 10px; /* Space between list items */
+    }
+    
+    .list-group-item h2 {
+        font-size: 1.25rem; /* Slightly larger font for task title */
+        margin-bottom: 10px; /* Space below the task title */
+    }
+    
+    .btn {
+        margin-left: 5px; /* Space between buttons */
+    }
+    
+    .btn-danger {
+        /* Optional: Adding a hover effect for the delete button */
+        transition: background-color 0.3s ease;
+    }
+    
+    .btn-danger:hover {
+        background-color: #c82333; /* Darker red on hover */
+    }
+    
+    
+    
+</style>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Task List</h1>
+        <div class="text-right mb-3">
+            <a href="{% url 'add_task' %}" class="btn btn-success">Add New Task</a>
+        </div>
+        <ul class="list-group">
+            {% for task in todos %}
+            <li class="list-group-item">
+                <h2 class="h5">{{ task.todo_title }}</h2>
+                <p>{{ task.todo_description }}</p>
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'edit_task' task.id %}" class="btn btn-warning btn-sm">Edit Task</a>
+                    <form method="POST" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm" formaction="{% url 'delete_task' task.id %}">Delete Task</button>
+                    </form>
+                </div>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No tasks available</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Link to Bootstrap JS (Optional, for interactive components) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
