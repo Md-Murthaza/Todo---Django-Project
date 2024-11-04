@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+LOGIN_URL = 'login_page'
 INSTALLED_APPS = [
     'rest_framework',
     'todo_app',

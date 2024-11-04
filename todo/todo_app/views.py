@@ -3,13 +3,19 @@ from .models import Todo
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import TodoSerializer
 # Create your views here.
 
+@login_required
 def view_tasks(request):
     todos = Todo.objects.all()
     return render(request,'view_tasks.html',{'todos':todos})
 
-
+@login_required
 def add_task(request):
     if request.method == "POST":
         todo_title  = request.POST.get('todo_title')
@@ -24,6 +30,7 @@ def add_task(request):
     
     return render(request, 'add_task.html',{'request':request})
 
+@login_required
 def edit_task(request,task_id):
     todos = get_object_or_404(Todo,id=task_id)
     if request.method == "POST":
@@ -34,17 +41,14 @@ def edit_task(request,task_id):
     return render(request,'edit_task.html',{'todos':todos})
 
 
-    
+@login_required  
 def delete_task(request,task_id):
     todos = get_object_or_404(Todo,id=task_id)
     todos.delete()
     return redirect('view_tasks')
 
 
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from .serializers import TodoSerializer
+
 
 @api_view(['GET','POST'])
 def task_list(request):
