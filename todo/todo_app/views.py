@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import Todo
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 
 def view_tasks(request):
@@ -88,7 +89,33 @@ def task_detail(request, id):
 
 
 def login_page(request):
+    if request.method == "POST":
+        username = request.POST.get('Username')
+        password = request.POST.get('Password')
+
+        if not User.objects.filter(username=username).exists():
+            messages.error(request,'Invalid Username')
+            return redirect('/login/')
+        
+        user = authenticate(username = username , password = password)
+
+
+        if user is None:
+            messages.error(request,'Invalid Password')
+            return redirect('/login/')
+        
+        else:
+            login(request,user)
+            return redirect('add_task')
+
     return render(request,"login.html")
+
+
+def logout_page(request):
+    logout(request)
+    messages.success(request,'You have sucessfully logged out!')
+    return redirect('login_page')
+    
 
 
 def register(request):

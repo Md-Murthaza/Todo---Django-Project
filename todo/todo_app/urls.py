@@ -20,7 +20,7 @@ from . views import *
 
 urlpatterns = [
     path('viewtasks/',view_tasks,name='view_tasks'),
-    path('',add_task,name='add_task'),
+    path('addtask/',add_task,name='add_task'),
     path('edittask/<int:task_id>/',edit_task,name='edit_task'),
     path('deletetask/<int:task_id>/',delete_task,name='delete_task'),
 
@@ -28,6 +28,7 @@ urlpatterns = [
 
     path('login/',login_page,name='login_page'),
     path('register/',register,name='register'),
+    path('logout/',logout_page,name='logout_page')
 
    
     
