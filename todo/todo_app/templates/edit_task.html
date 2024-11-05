@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,18 @@
 </head>
 <style>
     body {
-        text-align: center;
+            background: url("{% static 'background-1.jpg' %}");
+            background-size: cover; /* Adjusted to contain */
+            background-position: cover; /* Center the image */
+            background-repeat: no-repeat; /* Prevents repeating */
+            color: #ffffff; 
+            font-family: Arial, sans-serif; 
+            position: relative; 
+            text-align: center; 
+            padding: 10%; 
+            height: 100vh; 
+            margin: 0; 
+      
     }
     form {
         max-width: 500px; /* Limit the form width */

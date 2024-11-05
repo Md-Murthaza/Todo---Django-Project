@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +11,16 @@
 </head>
 <style>
     body {
-        background-color: #f8f9fa; /* Light background color */
-    }
+            background: url("{% static 'background-1.jpg' %}");
+            background-size: cover; 
+            background-repeat: no-repeat;
+            padding: 1%;  
+        }
+            
     
     h1 {
-        margin-bottom: 20px; /* Space below the title */
+        margin-bottom: 20px; 
+        color:rgb(255,255,255);
     }
     
     .list-group-item {

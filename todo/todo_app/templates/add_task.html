@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +8,20 @@
     <title>Todo</title>
     <style>
         body {
-            text-align: center;
+            background: url("{% static '/background-1.jpg' %}");
+            background-size: cover; /* Adjusted to contain */
+            background-position: cover; /* Center the image */
+            background-repeat: no-repeat; /* Prevents repeating */
+            color: #ffffff; 
+            font-family: Arial, sans-serif; 
+            position: relative; 
+            text-align: center; 
+            padding: 10%; 
+            height: 100vh; 
+            margin: 0; 
+      
         }
+        
         form {
             max-width: 500px; /* Limit the form width */
             margin: 0 auto; /* Center the form horizontally */
@@ -16,17 +29,19 @@
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 8px;
+            text-align:left;
         }
         /* Style the labels */
         form label {
             font-weight: bold;
             color: #333;
+           
         }
         /* Smaller input fields */
         form input.form-control-lg, 
         form textarea.form-control-lg {
             width: 100%; /* Make input and textarea full width */
-            padding: 8px; /* Padding inside the input and textarea */
+            padding: 10px; /* Padding inside the input and textarea */
             font-size: 0.875rem; /* Slightly smaller font size */
             border-radius: 4px; /* Rounded corners */
             border: 1px solid #ccc; /* Border styling */
@@ -49,6 +64,13 @@
         form button.btn-primary:hover {
             background-color: #0056b3; /* Darker blue on hover */
         }
+        .btn-secondary, .btn-danger {
+            margin-top: 15px;
+            margin-right: 10px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+        }
       
     </style>
 </head>
@@ -62,11 +84,11 @@
     <form method="POST" action="{% url 'add_task' %}">
         {% csrf_token %}
         <div class="mb-3">
-            <label for="todo_title" class="form-label">Title</label>
-            <input class="form-control form-control-lg" type="text" name="todo_title" id="todo_title" placeholder="Enter task title" required>
+            <label for="todo_title" class="form-label">Todo</label>
+            <input class="form-control form-control-lg" type="text" name="todo_title" id="todo_title" placeholder="what would you like to do ?" required>
         </div>
         <div class="mb-3">
-            <label for="todo_description" class="form-label">Task Description</label>
+            <label for="todo_description" class="form-label">Todo Description</label>
             <textarea class="form-control form-control-lg" id="todo_description" rows="3" name="todo_description" placeholder="Enter task description"></textarea>
         </div>
         <button type="submit" class="btn btn-primary mb-3">Submit</button>
