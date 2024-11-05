@@ -63,6 +63,13 @@
     form button.btn-primary:hover {
         background-color: #0056b3; /* Darker blue on hover */
     }
+    .btn-secondary, .btn-danger {
+        margin-top: 15px;
+        margin-right: 10px;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        border-radius: 4px;
+    }
 </style>
 <body>
     <h1>Add New task</h1>
@@ -83,7 +90,11 @@
     </form>
 
   
-    <a href="{% url 'view_tasks'  %}">Back to tasks list</a>
+    <a href="{% url 'view_tasks'  %}"class="btn btn-secondary">Back to tasks list</a>    
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout_page' %}" class="btn btn-danger">Logout</a>
+    {% endif %}
     
 </body>
 </html

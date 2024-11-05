@@ -35,20 +35,34 @@
     }
     
     .btn {
-        margin-left: 5px; /* Space between buttons */
+        margin-left: 5px; 
     }
     
     .btn-danger {
-        /* Optional: Adding a hover effect for the delete button */
+        
         transition: background-color 0.3s ease;
     }
     
     .btn-danger:hover {
-        background-color: #c82333; /* Darker red on hover */
+        background-color: #c82333;
     }
+    .btn-logout {
+        background-color: #dc3545;
+        color: white; /* Text color */
+        padding: 10px 20px; 
+        font-size: 1rem; /
+        border-radius: 0.5rem; 
+        text-transform: uppercase; 
+        transition: background-color 0.3s ease, transform 0.3s ease; 
+    }
+
+    .btn-logout:hover {
+        background-color: #c82333; /* Darker red on hover */
+        transform: scale(1.05); /* Slightly scale up on hover */
+    }
+
     
-    
-    
+
 </style>
 <body>
     <div class="container mt-5">
@@ -73,6 +87,10 @@
             <li class="list-group-item">No tasks available</li>
             {% endfor %}
         </ul>
+        
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout_page' %}" class="btn btn-logout">Logout</a>
+        {% endif %}
     </div>
 
     <!-- Link to Bootstrap JS (Optional, for interactive components) -->
