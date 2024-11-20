@@ -74,7 +74,7 @@
 <body>
     <div class="container">
         <h1 style = "text-align:center;">Register</h1>
-        <form method="POST" action="{% url 'register' %}">
+        <form method="POST" action="{% url 'register_page' %}">
             {% csrf_token %}
             {% if messages %}
             <div class="alert alert-primary" role="alert">

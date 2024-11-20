@@ -82,7 +82,7 @@ def logout_page(request):
     
 
 
-def register(request):
+def register_page(request):
     if request.method == "POST":
         first_name = request.POST.get('First_Name')
         last_name = request.POST.get('Last_Name')

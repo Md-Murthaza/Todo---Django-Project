@@ -27,7 +27,7 @@ urlpatterns = [
     ###login and register urls
 
     path('login/',login_page,name='login_page'),
-    path('',register,name='register'),
+    path('',register_page,name='register_page'),
     path('logout/',logout_page,name='logout_page')
 
    
